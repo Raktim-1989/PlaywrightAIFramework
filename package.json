@@ -1,0 +1,29 @@
+{
+  "name": "aiplaywrightframework",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+     "build": "tsc",
+    "start": "npx ts-node src/mcp/server.ts",
+    "ingest:locators": "npx ts-node src/rag/ingestLocators.ts",
+    "ai:gen": "npx ts-node scripts/generateFromFile.ts",
+    "ai:run": "npx playwright test tests/generated",
+    "ai:generateAndRun": "npm run ai:gen && npm run ai:run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@langchain/textsplitters": "^0.1.0",
+    "@modelcontextprotocol/sdk": "^1.19.1",
+    "chromadb": "^3.0.17",
+    "node-fetch": "^3.3.2",
+    "openai": "^6.1.0",
+    "playwright": "^1.55.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.6.2"
+  }
+}

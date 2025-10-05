@@ -1,0 +1,19 @@
+# 0) Prereqs
+ollama serve &  # if using local models
+docker run -p 8000:8000 chromadb/chromadb:latest  # if using Chroma HTTP
+npm i -D ts-node typescript @types/node
+npm i express
+
+# 1) Build Locators DB (RAG)
+npx ts-node src/rag/ingestLocators.ts
+
+# 2) Start MCP server
+npx ts-node src/mcp/server.ts
+
+# 3) Generate tests for ALL scenarios in a feature file
+npx ts-node scripts/generateFromFile.ts   # or use curl with the full BDD string
+
+# 4) Run tests
+npx playwright test tests/generated
+#   or via tool:
+# curl -X POST http://localhost:4000/tool -H "Content-Type: application/json" -d '{"tool":"playwright.runTests","input":{"pattern":"tests/generated"}}'
